@@ -33,7 +33,7 @@ A suspense can be replaced by `NavigationSafeSuspense` if a page navigation even
 (If a page navigation would remove the suspense component itself, the workaround is not necessary.)
 The workaround component calls `useSelectedLayoutSegments()`, which will force the suspense to re-render if the route changes.
 
-If you are using React Router, `'use no memo'` is necessary to keep React Router from optimizing away the fix and thus reintroducing the bug.
+If you are using React Compiler, `'use no memo'` is necessary to keep React Router from optimizing away the fix and thus reintroducing the bug.
 
 ```jsx
 'use client'
