@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { Nav } from './nav'
 import { NavigationSafeSuspense } from './workaround'
 
