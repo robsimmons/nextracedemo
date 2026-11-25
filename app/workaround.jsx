@@ -9,6 +9,7 @@ import { Suspense } from 'react'
  * If a page navigation would remove the suspense component itself, the workaround is not necessary.
  */
 export function NavigationSafeSuspense(props) {
+  'use no memo'
   // useSelectedLayoutSegments forces the suspense to re-render if the route changes
   useSelectedLayoutSegments()
   return <Suspense {...props} />
