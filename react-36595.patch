@@ -1,0 +1,33 @@
+--- a/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.production.js
++++ b/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.production.js
+@@ -7694,18 +7694,23 @@
+     case 13:
+       var state$108 = workInProgress.memoizedState;
+       if (null !== state$108) {
+-        if (null !== state$108.dehydrated)
+-          return (
+-            pushPrimaryTreeSuspenseHandler(workInProgress),
+-            (workInProgress.flags |= 128),
+-            null
+-          );
+-        state$108 = propagateParentContextChanges(
++        // react/react#36595: propagate context before bailing out
++        var contextChanged$pr = propagateParentContextChanges(
+           current,
+           workInProgress,
+           renderLanes,
+           !1
+         );
++        if (null !== state$108.dehydrated) {
++          if (0 !== (renderLanes & workInProgress.childLanes))
++            return updateSuspenseComponent(current, workInProgress, renderLanes);
++          return (
++            pushPrimaryTreeSuspenseHandler(workInProgress),
++            (workInProgress.flags |= 128),
++            null
++          );
++        }
++        state$108 = contextChanged$pr;
+         var primaryChildLanes = workInProgress.child.childLanes;
+         if (state$108 || 0 !== (renderLanes & primaryChildLanes))
+           return updateSuspenseComponent(current, workInProgress, renderLanes);

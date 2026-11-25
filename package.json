@@ -1,6 +1,8 @@
 {
   "private": true,
   "scripts": {
+    "react-36595:apply": "patch -p1 -N < react-36595.patch",
+    "react-36595:remove": "patch -p1 -R < react-36595.patch",
     "build": "next build",
     "start": "next start"
   },
